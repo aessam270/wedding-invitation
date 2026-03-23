@@ -291,22 +291,10 @@
             text-align: CENTER;
             font-family: 'Great Vibes', cursive;
             font-size: clamp(2.4rem, 8vw, 3.8rem);
-            font-weight: 500; /* Made the font bolder */
-            -webkit-text-stroke: 1px rgba(45, 55, 35, 0.6); /* Adds physical thickness to cursive letters */
-            
-            /* 'Blind Deboss' look: Translucent sage to just darken the paper, not cover it */
-            color: rgba(45, 55, 35, 0.7); 
-            /* Color-burn ensures 100% of the paper's floral texture shows clearly THROUGH the text */
-            mix-blend-mode: color-burn; 
-            
+            font-weight: 400;
+            color: #000000; 
             z-index: 10;
-            letter-spacing: 0.5px;
-            
-            /* Deep engraved (debossed) lighting: bright highlight below, dark shadow inside */
-            text-shadow: 
-                1px 1px 1px rgba(255, 255, 255, 0.55), 
-                -1.5px -1.5px 2px rgba(30, 40, 20, 0.5);
-                
+            letter-spacing: 0.9px;
             pointer-events: none;
             transition: opacity 0.4s ease;
         }
@@ -435,35 +423,21 @@
         }
 
         .click-hint p {
-            font-size: clamp(0.85rem, 2vw, 1rem);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-family: 'Playfair Display', serif;
-            font-weight: 500;
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
+            letter-spacing: 0.9px;
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
             margin: 0;
-            
-            /* Copied exact shadow and color from You are invited */
-            color: rgba(45, 55, 35, 0.7); 
-            mix-blend-mode: color-burn; 
-            -webkit-text-stroke: 1px rgba(45, 55, 35, 0.6); 
-            text-shadow: 
-                1px 1px 1px rgba(255, 255, 255, 0.55), 
-                -1.5px -1.5px 2px rgba(30, 40, 20, 0.5);
+            color: #000000; 
         }
 
         .click-hint .tap-icon {
             display: block;
-            width: 26px;
-            height: 26px;
-            margin-bottom: 0.5rem;
+            width: 28px;
+            height: 28px;
+            margin-bottom: 0.2rem;
             animation: floatUpHint 2s ease-in-out infinite;
-
-            /* Copied exact shadow and color from You are invited */
-            color: rgba(45, 55, 35, 0.7);
-            mix-blend-mode: color-burn;
-            filter: 
-                drop-shadow(1px 1px 0px rgba(255, 255, 255, 0.55)) 
-                drop-shadow(-1.5px -1.5px 1px rgba(30, 40, 20, 0.5));
+            color: #000000;
         }
 
         @keyframes fadeInHint {
