@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Ahmed & Basmala — Wedding Invitation</title>
     <meta name="description" content="You're invited to celebrate the wedding of Ahmed & Basmala on 23 May 2026." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +23,11 @@
 
         html,
         body {
-            height: 100%;
+            /* Full-screen configuration */
+            height: 100dvh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
         }
 
         html {
@@ -33,9 +37,14 @@
         body {
             font-family: 'Cormorant Garamond', serif;
             background: linear-gradient(160deg, #fdf6ee 0%, #f5ece0 40%, #efe4d4 100%);
-            min-height: 100vh;
+            min-height: 100dvh;
             overflow: hidden;
             color: #4a3728;
+            /* Support for mobile safe areas, ensuring edge-to-edge content */
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
         }
 
         /* ── Particles ────────────────────────────────────── */
@@ -56,13 +65,13 @@
 
         @keyframes floatUp {
             0% {
-                transform: translateY(100vh) rotate(0deg) scale(0);
+                transform: translateY(100dvh) rotate(0deg) scale(0);
                 opacity: 0;
             }
 
             10% {
                 opacity: 0.6;
-                transform: translateY(90vh) rotate(36deg) scale(1);
+                transform: translateY(90dvh) rotate(36deg) scale(1);
             }
 
             90% {
@@ -70,7 +79,7 @@
             }
 
             100% {
-                transform: translateY(-10vh) rotate(360deg) scale(0.5);
+                transform: translateY(-10dvh) rotate(360deg) scale(0.5);
                 opacity: 0;
             }
         }
@@ -307,15 +316,16 @@
         /* ── Letter card rises from inside envelope ──────── */
         .letter {
             position: fixed;
-            bottom: 0;
+            bottom: calc(0px + env(safe-area-inset-bottom));
             left: 50%;
             transform: translateX(-50%) translateY(0);
             width: min(88vw, 420px);
-            height: 72vh;
+            height: clamp(60dvh, 72dvh, 800px);
             background: #fffdf8;
             border-radius: 8px 8px 0 0;
             z-index: 3;
             padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+            padding-top: calc(clamp(1.5rem, 5vw, 2.5rem) + env(safe-area-inset-top));
             text-align: center;
             box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.22), inset 0 0 50px rgba(139, 101, 8, 0.04);
             border: 1px solid rgba(139, 101, 8, 0.18);
@@ -328,7 +338,7 @@
 
         .envelope-wrapper.opened .letter {
             /* Slide upward slightly as flap gets out of way */
-            transform: translateX(-50%) translateY(-30vh);
+            transform: translateX(-50%) translateY(-30dvh);
             opacity: 1;
             z-index: 1;
             /* Stay physically behind the pocket cut-out! */
@@ -406,7 +416,7 @@
         /* ── Click Hint ───────────────────────────────────── */
         .click-hint {
             position: fixed;
-            bottom: clamp(20px, 6vh, 40px);
+            bottom: calc(clamp(20px, 6dvh, 40px) + env(safe-area-inset-bottom));
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -474,12 +484,17 @@
             border-top-left-radius: 26px;
             border-top-right-radius: 26px;
             box-shadow: 0 -18px 45px rgba(43, 30, 15, 0.22);
+            /* Safe area spacing inside the content */
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
         }
 
         .invitation-content::before {
             content: '';
             position: sticky;
-            top: 0;
+            top: env(safe-area-inset-top);
             display: block;
             width: min(70px, 24vw);
             height: 6px;
@@ -668,7 +683,7 @@
         }
 
         .photo-tile {
-            height: clamp(120px, 22vh, 180px);
+            height: clamp(120px, 22dvh, 180px);
             border-radius: 8px;
             border: 1px solid rgba(139, 101, 8, 0.18);
             background-size: cover;
@@ -996,7 +1011,7 @@
         @media (max-width: 600px) {
             .hero-text {
                 position: fixed;
-                top: 15vh;
+                top: 15dvh;
                 left: 0;
                 right: 0;
                 z-index: 20;
