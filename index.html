@@ -151,8 +151,8 @@
             background-size: cover;
             background-position: center top;
             background-blend-mode: overlay; /* Softened texture blend */
-            /* V-notch adjusted for shorter flap, stops at 43vh */
-            clip-path: polygon(0 0, 0 8vh, 50% 43vh, 100% 8vh, 100% 0, 100% 100%, 0 100%);
+            /* V-notch dynamically bound to flap's width-based height using clamp */
+            clip-path: polygon(0 0, 0 clamp(40px, 10vw, 60px), 50% calc(clamp(250px, 75vw, 450px) - 2.5vw), 100% clamp(40px, 10vw, 60px), 100% 0, 100% 100%, 0 100%);
             z-index: 3;
             /* Over letter (3) but behind flap (9) */
             pointer-events: none;
@@ -166,7 +166,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 46vh; /* Shorter, closer to mid-screen to prevent vertical stretch */
+            /* Strict width-based height mapping to ensure a perfect triangle shape that never stretches vertically */
+            height: clamp(250px, 75vw, 450px);
             z-index: 9;
             transform-origin: top center;
             transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -183,7 +184,7 @@
         .envelope-flap-edge {
             position: absolute;
             inset: 0;
-            clip-path: polygon(0 0, 100% 0, 100% 12%, 50% 100%, 0 12%); /* Decreased shoulder for wider horizontal spread */
+            clip-path: polygon(0 0, 100% 0, 100% clamp(40px, 10vw, 60px), 50% 100%, 0 clamp(40px, 10vw, 60px)); /* Decreased shoulder for wider horizontal spread */
             background-color: #8da382;
             background-image: url('sage_floral_texture.png');
             background-size: cover;
@@ -200,9 +201,9 @@
             clip-path: polygon(
                 clamp(24px, 5vw, 36px) 0,
                 calc(100% - clamp(24px, 5vw, 36px)) 0,
-                calc(100% - clamp(24px, 5vw, 36px)) calc(12% - 4px),
+                calc(100% - clamp(24px, 5vw, 36px)) calc(clamp(40px, 10vw, 60px) - 4px),
                 50% calc(100% - clamp(28px, 6vw, 42px)),
-                clamp(24px, 5vw, 36px) calc(12% - 4px)
+                clamp(24px, 5vw, 36px) calc(clamp(40px, 10vw, 60px) - 4px)
             );
             background-color: #8da382;
             background-image: url('sage_floral_texture.png');
@@ -218,7 +219,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            clip-path: polygon(0 0, 100% 0, 100% 12%, 50% 100%, 0 12%);
+            clip-path: polygon(0 0, 100% 0, 100% clamp(40px, 10vw, 60px), 50% 100%, 0 clamp(40px, 10vw, 60px));
             background: linear-gradient(175deg,
                     rgba(240, 238, 225, 0.08) 0%,
                     rgba(240, 238, 225, 0.02) 20%,
@@ -285,7 +286,7 @@
         /* ── 'You are invited' on envelope surface ───────── */
         .envelope-invite-text {
             position: absolute;
-            top: calc(46vh + clamp(60px, 15vw, 90px)); /* Shifted much higher to match shorter flap */
+            top: calc(clamp(250px, 75vw, 450px) + clamp(60px, 15vw, 90px)); /* Shifted much higher to match shorter flap */
             /* below seal */
             width: 100%;
             text-align: CENTER;
