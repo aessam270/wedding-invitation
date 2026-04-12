@@ -1478,7 +1478,6 @@
 
         wrapper.addEventListener('touchstart', function (e) {
             if (isOpened) return;
-            if (!e.target.closest('.envelope-flap-wrapper') && !e.target.closest('.wax-seal')) return;
             isDragging = true;
             startY = e.touches[0].clientY;
             flapWrapper.style.transition = 'none'; // instant follow
@@ -1518,7 +1517,6 @@
 
         wrapper.addEventListener('mousedown', function (e) {
             if (isOpened) return;
-            if (!e.target.closest('.envelope-flap-wrapper') && !e.target.closest('.wax-seal')) return;
             isDragging = true;
             startY = e.clientY;
             flapWrapper.style.transition = 'none';
